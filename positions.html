@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>持仓状态 · 妖币筛选器</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="terminal-shell">
+      <header class="terminal-topbar">
+        <div class="topbar-brand">
+          <p class="topbar-kicker">position monitor / risk board</p>
+          <div class="topbar-title-line">
+            <h1>持仓状态</h1>
+            <span class="live-pip"></span>
+          </div>
+          <p class="topbar-meta">
+            <span id="positionsUpdated">自动刷新中</span>
+            <span id="positionsRegimeBadge" class="mode-chip neutral">等待环境判断</span>
+          </p>
+        </div>
+        <div class="actions terminal-actions">
+          <a class="button-link" href="/">主控台</a>
+          <a class="button-link" href="/trading.html">模拟交易</a>
+        </div>
+      </header>
+
+      <section class="terminal-overview">
+        <article class="overview-card overview-verdict">
+          <span class="panel-label">open positions</span>
+          <h2 id="positionsOpenCount">0</h2>
+          <p id="positionsHeadline">当前暂无持仓。</p>
+        </article>
+
+        <article class="overview-card overview-stats">
+          <span class="panel-label">risk stats</span>
+          <div class="metric-grid terminal-metric-grid" id="positionsMetrics"></div>
+        </article>
+
+        <article class="overview-card overview-paper">
+          <div class="overview-head">
+            <span class="panel-label">risk regime</span>
+            <span class="mode-chip paper">live view</span>
+          </div>
+          <h3 id="positionsRegimeName">等待环境判断</h3>
+          <p id="positionsRegimeSummary">环境与账户回撤会影响当前持仓管理力度。</p>
+        </article>
+      </section>
+
+      <section class="terminal-layout">
+        <aside class="terminal-sidebar">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">exposure</span>
+                <h3>按市场敞口</h3>
+              </div>
+            </div>
+            <div class="bucket-summary-grid single-column" id="positionsExposure"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">focus</span>
+                <h3>重点提示</h3>
+              </div>
+            </div>
+            <div class="line-list" id="positionsFocus"></div>
+          </section>
+        </aside>
+
+        <div class="terminal-main">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">book</span>
+                <h3>当前持仓清单</h3>
+              </div>
+              <p>开仓、止损、止盈、浮盈浮亏全部单独看。</p>
+            </div>
+            <div class="position-table" id="positionsTable"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">recent adjustments</span>
+                <h3>最近仓位动作</h3>
+              </div>
+              <p>优先看减仓、抬止损、止盈止损。</p>
+            </div>
+            <div class="line-list" id="positionsOrders"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="/positions.js"></script>
+  </body>
+</html>

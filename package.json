@@ -1,37 +1,48 @@
 {
-  "name": "crypto-mutant-scanner",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "description": "Local crypto narrative and on-chain scanner with Obsidian knowledge base.",
-  "scripts": {
-    "setup": "npm install && node services/cli.js init",
-    "init": "node services/cli.js init",
-    "doctor": "node services/cli.js doctor",
-    "test": "node --test",
-    "dev": "node services/server.js",
-    "worker": "node services/cli.js worker",
-    "dashboard:streamlit": "python3 -m streamlit run dashboard/streamlit_app.py --server.port 8788",
-    "scan:market": "node services/cli.js scan-market",
-    "scan:x": "node services/cli.js scan-x",
-    "scan:square": "node services/cli.js scan-square",
-    "scan:gmgn-track": "node services/cli.js scan-gmgn-track",
-    "signals": "node services/cli.js signals",
-    "trading:cycle": "node services/cli.js trading-cycle",
-    "trading:status": "node services/cli.js trading-status",
-    "trading:review": "node services/cli.js trading-review",
-    "kb-refresh": "node services/cli.js kb-refresh",
-    "classify:strategy": "node services/cli.js classify-strategy",
-    "score": "node services/cli.js score",
-    "track": "node services/cli.js track-performance",
-    "clean-alerts": "node services/cli.js clean-alerts",
-    "chrome:restart": "node services/cli.js chrome-restart",
-    "smoke": "node services/cli.js smoke"
+  "name": "playwright-core",
+  "version": "1.59.1",
+  "description": "A high-level API to automate web browsers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microsoft/playwright.git"
   },
-  "dependencies": {
-    "playwright-core": "^1.57.0"
-  },
+  "homepage": "https://playwright.dev",
   "engines": {
-    "node": ">=20"
-  }
+    "node": ">=18"
+  },
+  "author": {
+    "name": "Microsoft Corporation"
+  },
+  "license": "Apache-2.0",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "import": "./index.mjs",
+      "require": "./index.js",
+      "default": "./index.js"
+    },
+    "./package.json": "./package.json",
+    "./lib/bootstrap": "./lib/bootstrap.js",
+    "./lib/outofprocess": "./lib/outofprocess.js",
+    "./lib/cli/program": "./lib/cli/program.js",
+    "./lib/tools/cli-client/program": "./lib/tools/cli-client/program.js",
+    "./lib/tools/mcp/program": "./lib/tools/mcp/program.js",
+    "./lib/mcpBundle": "./lib/mcpBundle.js",
+    "./lib/zodBundle": "./lib/zodBundle.js",
+    "./lib/tools/exports": "./lib/tools/exports.js",
+    "./lib/remote/playwrightServer": "./lib/remote/playwrightServer.js",
+    "./lib/server": "./lib/server/index.js",
+    "./lib/server/utils/image_tools/stats": "./lib/server/utils/image_tools/stats.js",
+    "./lib/server/utils/image_tools/compare": "./lib/server/utils/image_tools/compare.js",
+    "./lib/server/utils/image_tools/imageChannel": "./lib/server/utils/image_tools/imageChannel.js",
+    "./lib/server/utils/image_tools/colorUtils": "./lib/server/utils/image_tools/colorUtils.js",
+    "./lib/server/registry/index": "./lib/server/registry/index.js",
+    "./lib/utils": "./lib/utils.js",
+    "./lib/utilsBundle": "./lib/utilsBundle.js",
+    "./lib/zipBundle": "./lib/zipBundle.js"
+  },
+  "bin": {
+    "playwright-core": "cli.js"
+  },
+  "types": "types/types.d.ts"
 }

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>模拟交易 · 妖币筛选器</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="terminal-shell trading-terminal-shell">
+      <header class="terminal-topbar">
+        <div class="topbar-brand">
+          <p class="topbar-kicker">paper execution / control room</p>
+          <div class="topbar-title-line">
+            <h1>模拟交易</h1>
+            <span class="live-pip"></span>
+          </div>
+          <p class="topbar-meta">
+            <span id="tradingUpdated">自动刷新中</span>
+            <span id="tradingRegimeBadge" class="mode-chip neutral">等待环境判断</span>
+          </p>
+        </div>
+        <div class="actions terminal-actions">
+          <a class="button-link" href="/positions.html">持仓状态</a>
+          <a class="button-link" href="/">返回主控台</a>
+          <button id="runCycle">立即决策</button>
+        </div>
+      </header>
+
+      <section class="terminal-overview trading-overview">
+        <article class="overview-card overview-verdict">
+          <span class="panel-label">equity</span>
+          <h2 id="equity">$1000</h2>
+          <p id="accountLine">读取纸面账户。</p>
+        </article>
+
+        <article class="overview-card overview-stats">
+          <span class="panel-label">account stats</span>
+          <div class="metric-grid terminal-metric-grid" id="accountMetrics"></div>
+        </article>
+
+        <article class="overview-card overview-paper">
+          <div class="overview-head">
+            <span class="panel-label">market regime</span>
+            <span class="mode-chip paper">routing</span>
+          </div>
+          <h3 id="tradingRegimeName">等待环境判断</h3>
+          <p id="tradingRegimeSummary">环境会影响链上、Alpha、合约的试错强度。</p>
+        </article>
+      </section>
+
+      <section class="trading-command-layout">
+        <aside class="trading-sidebar">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">overview</span>
+                <h3>三类资产执行面</h3>
+              </div>
+            </div>
+            <div class="bucket-summary-grid" id="marketBuckets"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">attribution</span>
+                <h3>表现归因</h3>
+              </div>
+            </div>
+            <div id="performanceStats" class="line-list"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">by chain</span>
+                <h3>按链表现</h3>
+              </div>
+            </div>
+            <div id="chainStats" class="line-list"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">by market</span>
+                <h3>按市场表现</h3>
+              </div>
+            </div>
+            <div id="marketStats" class="line-list"></div>
+          </section>
+        </aside>
+
+        <div class="trading-main">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">positions / onchain</span>
+                <h3>链上持仓与操作</h3>
+              </div>
+              <p>GMGN / DEX 相关仓位。</p>
+            </div>
+            <div id="positionsOnchain" class="line-list"></div>
+            <div id="ordersOnchain" class="line-list compact-list inline-orders"></div>
+          </section>
+
+          <section class="triple-panel-grid">
+            <section class="terminal-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="panel-label">positions / alpha</span>
+                  <h3>Alpha 持仓与操作</h3>
+                </div>
+              </div>
+              <div id="positionsAlpha" class="line-list"></div>
+              <div id="ordersAlpha" class="line-list compact-list inline-orders"></div>
+            </section>
+
+            <section class="terminal-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="panel-label">positions / futures</span>
+                  <h3>合约持仓与操作</h3>
+                </div>
+              </div>
+              <div id="positionsFutures" class="line-list"></div>
+              <div id="ordersFutures" class="line-list compact-list inline-orders"></div>
+            </section>
+
+            <section class="terminal-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="panel-label">setups</span>
+                  <h3>按策略表现</h3>
+                </div>
+              </div>
+              <div id="setupStats" class="line-list"></div>
+            </section>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">universe</span>
+                <h3>当前机会池</h3>
+              </div>
+              <p>本轮实际供决策引擎使用的前排机会。</p>
+            </div>
+            <div id="opportunityBoard" class="paper-opportunity-grid"></div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">decision log</span>
+                <h3>最近决策</h3>
+              </div>
+              <p>默认中文摘要，原始 JSON 收起。</p>
+            </div>
+            <div id="decisionLog" class="decision-log"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="/trading.js"></script>
+  </body>
+</html>

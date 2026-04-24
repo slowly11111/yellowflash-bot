@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>妖币筛选器</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="terminal-shell">
+      <header class="terminal-topbar">
+        <div class="topbar-brand">
+          <p class="topbar-kicker">local scanner / command deck</p>
+          <div class="topbar-title-line">
+            <h1>妖币筛选器</h1>
+            <span class="live-pip"></span>
+          </div>
+          <p class="topbar-meta">
+            <span id="lastUpdated">自动刷新中</span>
+            <span>主控台</span>
+            <span id="regimeBadge" class="mode-chip neutral">等待环境判断</span>
+          </p>
+        </div>
+        <div class="actions terminal-actions">
+          <a class="button-link" href="/positions.html">持仓状态</a>
+          <a class="button-link" href="/trading.html">查看模拟盘</a>
+          <button id="scanMarket">市场扫描</button>
+          <button id="score">重算信号</button>
+          <button id="cleanAlerts">清理提醒</button>
+        </div>
+      </header>
+
+      <section class="terminal-overview">
+        <article class="overview-card overview-verdict">
+          <span class="panel-label">trade state</span>
+          <h2 id="mainVerdict">等待判断</h2>
+          <p id="mainSubtext">系统正在读取交易结论。</p>
+        </article>
+
+        <article class="overview-card overview-stats">
+          <span class="panel-label">scanner stats</span>
+          <div class="metric-grid terminal-metric-grid" id="statusGrid"></div>
+        </article>
+
+        <article class="overview-card overview-paper" id="paperHero">
+          <div class="overview-head">
+            <span class="panel-label">paper account</span>
+            <span class="mode-chip paper" id="paperMode">paper</span>
+          </div>
+          <h3 id="paperEquity">$1000</h3>
+          <p id="paperLine">读取账户状态。</p>
+          <div class="metric-grid mini-grid" id="paperQuickStats"></div>
+        </article>
+      </section>
+
+      <section class="terminal-layout">
+        <aside class="terminal-sidebar">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">system</span>
+                <h3>运行状态</h3>
+              </div>
+            </div>
+            <section class="system-line" id="systemLine">
+              <strong id="systemState">系统读取中</strong>
+              <span id="systemDetail">等待后台状态。</span>
+            </section>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">regime</span>
+                <h3>市场环境</h3>
+              </div>
+            </div>
+            <div class="context-stack">
+              <strong id="regimeName">等待环境判断</strong>
+              <p id="regimeSummary">环境结论会影响链上、Alpha、合约的风险倾斜。</p>
+            </div>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">guide</span>
+                <h3>看板用法</h3>
+              </div>
+            </div>
+            <ul class="guide-list">
+              <li>先看顶部结论，再看链上可交易。</li>
+              <li>Alpha 和合约是辅助机会，不和链上混看。</li>
+              <li>系统异常或新提醒，只在左侧状态栏出现。</li>
+            </ul>
+          </section>
+        </aside>
+
+        <div class="terminal-main">
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">queue / onchain</span>
+                <h3>链上可交易</h3>
+              </div>
+              <p>只留主交易层真正要你看一眼的标的。</p>
+            </div>
+            <section class="terminal-list" id="tradeDecisions"></section>
+          </section>
+
+          <section class="terminal-market-grid">
+            <section class="terminal-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="panel-label">queue / alpha</span>
+                  <h3>Alpha 精选</h3>
+                </div>
+                <p id="alphaSubtext">按策略筛 3 到 5 个。</p>
+              </div>
+              <section class="terminal-list terminal-list-compact" id="alphaQueue"></section>
+            </section>
+
+            <section class="terminal-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="panel-label">queue / futures</span>
+                  <h3>合约埋伏</h3>
+                </div>
+                <p id="futuresSubtext">只看能埋伏的，不看纯噪音。</p>
+              </div>
+              <section class="terminal-list terminal-list-compact" id="futuresQueue"></section>
+            </section>
+          </section>
+
+          <section class="terminal-panel">
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">execution / paper</span>
+                <h3>模拟交易执行</h3>
+              </div>
+              <p>三类市场拆开看，不再混成一锅。</p>
+            </div>
+            <div class="bucket-summary-grid" id="paperMarketBoard"></div>
+            <div class="feed-grid">
+              <div class="feed-panel">
+                <span class="panel-label">recent actions</span>
+                <section class="line-list compact-list" id="paperRecentActions"></section>
+              </div>
+              <div class="feed-panel">
+                <span class="panel-label">recent decisions</span>
+                <section class="line-list compact-list" id="paperRecentDecisions"></section>
+              </div>
+            </div>
+          </section>
+
+          <section class="terminal-panel" id="watchSection" hidden>
+            <div class="panel-head">
+              <div>
+                <span class="panel-label">observe / risk</span>
+                <h3>高风险观察</h3>
+              </div>
+              <p id="watchSubtext">热度够，但主规则不允许直接买。</p>
+            </div>
+            <section class="terminal-list" id="observationQueue"></section>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

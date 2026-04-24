@@ -1,0 +1,37 @@
+{
+  "name": "crypto-mutant-scanner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local crypto narrative and on-chain scanner with Obsidian knowledge base.",
+  "scripts": {
+    "setup": "npm install && node services/cli.js init",
+    "init": "node services/cli.js init",
+    "doctor": "node services/cli.js doctor",
+    "test": "node --test",
+    "dev": "node services/server.js",
+    "worker": "node services/cli.js worker",
+    "dashboard:streamlit": "python3 -m streamlit run dashboard/streamlit_app.py --server.port 8788",
+    "scan:market": "node services/cli.js scan-market",
+    "scan:x": "node services/cli.js scan-x",
+    "scan:square": "node services/cli.js scan-square",
+    "scan:gmgn-track": "node services/cli.js scan-gmgn-track",
+    "signals": "node services/cli.js signals",
+    "trading:cycle": "node services/cli.js trading-cycle",
+    "trading:status": "node services/cli.js trading-status",
+    "trading:review": "node services/cli.js trading-review",
+    "kb-refresh": "node services/cli.js kb-refresh",
+    "classify:strategy": "node services/cli.js classify-strategy",
+    "score": "node services/cli.js score",
+    "track": "node services/cli.js track-performance",
+    "clean-alerts": "node services/cli.js clean-alerts",
+    "chrome:restart": "node services/cli.js chrome-restart",
+    "smoke": "node services/cli.js smoke"
+  },
+  "dependencies": {
+    "playwright-core": "^1.57.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
